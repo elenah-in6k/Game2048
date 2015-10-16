@@ -1,35 +1,51 @@
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by employee on 10/16/15.
  */
 public class GameField {
-    int[][] gameField = new int[4][4];
-    String gameFieldValue = "";
+    List<Cell> gameField = new ArrayList<>();
+    String gameFieldValue ;
+    private CellValueGenerator cellValue = new StaticCellValueGenerator(2);
+    private CellPlaceGenerator cellPlace = new RandomCellPlaceGenerator();
+    final int size = 4;
+    int cellRow;
+    int cellColumn;
+
 
     public GameField() {
-        for( int i = 0; i < gameField.length; i++){
-            for( int j = 0; j < gameField.length; j++){
-                gameField[i][j] = 0;
+        int n = 0;
+        for( int i = 0; i < size; i++){
+            for( int j = 0; j < size; j++){
+                gameField.add(new Cell(n, i, j, 0));
+                n++;
             }
         }
     }
 
     public void fillEmptyCell() {
+        cellRow = cellPlace.getCellRow();
+        cellColumn = cellPlace.getCellColumn();
+         for(int i = 0; (i < 20)&&(!IsEmptyCell(cellRow,cellColumn)); i++){
+             cellRow = cellPlace.getCellRow();
+             cellColumn = cellPlace.getCellColumn();
+        }
+        gameField[cellRow][cellColumn] = cellValue.getCellValue();
 
 
     }
     public String toString(){
-        for( int i = 0; i < gameField.length; i++){
-            for( int j = 0; j < gameField.length; j++){
-                gameFieldValue += gameField[i][j]+" ";
+        gameFieldValue = "";
+        for(Cell cell :gameField){
+                gameFieldValue += cell.cellValue + " ";
 
-            }
-            gameFieldValue += "\n";
         }
         return gameFieldValue;
     }
 
-    public boolean IsEmptyCell(int i, int j) {
-        if (gameField[i][j] == 0){
+    public boolean IsEmptyCell(int i) {
+        if (gameField.get(i).cellValue == 0){
             return true;
         }
         return false;

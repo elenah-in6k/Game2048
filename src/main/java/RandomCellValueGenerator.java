@@ -8,7 +8,7 @@ public class RandomCellValueGenerator implements CellValueGenerator {
 
     @Override
     public int getCellValue() {
-        return random.nextInt(10) == 0 ? 4 : 2;
+        return random.nextInt(11) == 0 ? 4 : 2;
     }
 
 }
