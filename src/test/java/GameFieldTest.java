@@ -52,6 +52,29 @@ public class GameFieldTest {
                 "0 0 4 4 " ));
     }
 
+    @Test
+    public void testMoveRowLeft(){
+        gameField = new GameField();
+        for (int i = 0; i < 16; i++) {
+            gameField.fillEmptyCell();
+        }
+        assertThat(gameField.toString(), is("2 2 2 2 " +
+                "2 2 2 2 " +
+                "2 2 2 2 " +
+                "2 2 2 2 "  ));
+        gameField.move(Direction.left);
+        assertThat(gameField.toString(), is("4 4 0 0 " +
+                "4 4 0 0 " +
+                "4 4 0 0 " +
+                "4 4 0 0 " ));
+        gameField.move(Direction.left);
+        assertThat(gameField.toString(), is("8 0 0 0 " +
+                "8 0 0 0 " +
+                "8 0 0 0 " +
+                "8 0 0 0 " ));
+
+    }
+
 
 
 }

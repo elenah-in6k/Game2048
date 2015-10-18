@@ -36,12 +36,16 @@ public class GameField {
             switch (direction) {
                 case right:
                     moveRowRight(i);
+                    break;
                 case left:
                     moveRowLeft(i);
+                    break;
                 case up:
                     moveColumnUp(i);
+                    break;
                 case down:
                     moveColumnDown(i);
+                    break;
             }
             i++;
         }
@@ -56,7 +60,48 @@ public class GameField {
     }
 
     private void moveRowLeft(int i) {
+        int initialValue = i * SIZE;
+        int finalValue = ((i+1) * SIZE) - 1;
+        i = initialValue;
+        leftOffset(initialValue, finalValue);
+        while ((finalValue > i) ) {
+            getSummEqualCellsAfterLeftOffset(i);
+            i++;
+        }
+        leftOffset(initialValue, finalValue);
 
+    }
+
+    private void getSummEqualCellsAfterLeftOffset(int i) {
+        Cell cellLeftOld = gameField.get(i);
+        Cell cellRightOld = gameField.get(i+1);
+        Cell cellLeftNew = cellLeftOld;
+        Cell cellRightNew = cellRightOld;
+        if((!cellLeftOld.IsEmptyCell())&&(cellLeftOld.isEqualsCellValue(cellRightOld))){
+             gameScore += cellRightOld.cellValue*2;
+            cellLeftNew = new Cell(i, cellRightOld.cellValue*2);
+            cellRightNew = Cell.createEmptyCell(i);
+        }
+        gameField.set(i,cellLeftNew);
+        gameField.set(i+1,cellRightNew);
+
+    }
+
+    private void leftOffset(int initialValue, int finalValue) {
+        int i = initialValue;
+        int j = i;
+        while (finalValue > j){
+            while ((finalValue > i) ){
+                Cell cellLeftOld = gameField.get(i );
+                Cell cellRightOld = gameField.get(i+1);
+                if(!cellRightOld.IsEmptyCell()&& cellLeftOld.IsEmptyCell()){
+                    gameField.set(i, new Cell(i, cellRightOld.cellValue));
+                    gameField.set(i+1, Cell.createEmptyCell(i));
+                }
+                i++;
+            }
+            j++;
+        }
     }
 
     private void moveRowRight(int i) {
@@ -65,7 +110,7 @@ public class GameField {
         i = finalValue;
         offsetRight(initialValue, finalValue);
         while ((initialValue < i) ) {
-            getNewCellValueSummX2(i);
+            getSummEqualCellsAfterRightOffset(i);
             i--;
         }
         offsetRight(initialValue, finalValue);
@@ -78,16 +123,17 @@ public class GameField {
         while ((initialValue < i) ){
             Cell cellLeftOld = gameField.get(i - 1);
             Cell cellRightOld = gameField.get(i);
-            if(cellRightOld.IsEmptyCell()&& !cellLeftOld.IsEmptyCell()){
+            if((cellRightOld.IsEmptyCell())&& (!cellLeftOld.IsEmptyCell())){
                 gameField.set(i, new Cell(i, cellLeftOld.cellValue));
                 gameField.set(i-1, Cell.createEmptyCell(i-1));
             }
             i--;
-        }j--;
+        }
+            j--;
         }
     }
 
-    private void getNewCellValueSummX2(int i) {
+    private void getSummEqualCellsAfterRightOffset(int i) {
         Cell cellLeftOld = gameField.get(i - 1);
         Cell cellRightOld = gameField.get(i);
         Cell cellLeftNew = cellLeftOld;
