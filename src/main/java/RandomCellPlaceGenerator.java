@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -5,15 +8,35 @@ import java.util.Random;
  */
 public class RandomCellPlaceGenerator implements CellPlaceGenerator {
     Random random = new Random();
-    @Override
-    public int getCellRow() {
-        return random.nextInt(4);
+    private List<Cell> gameField;
+    private ArrayList<Integer> emptyCells = new ArrayList<>();
+
+    public RandomCellPlaceGenerator(List<Cell> gameField) {
+        this.gameField = gameField;
+
     }
 
     @Override
-    public int getCellColumn() {
-        return random.nextInt(4);
+    public int getCellNumber() {
+        searchEmptyCell();
+        int emptyCellNumber = random.nextInt(emptyCells.size());
+        int cellNumber = emptyCells.get(emptyCellNumber);
+        emptyCells.remove(emptyCellNumber);
+
+        return cellNumber;
     }
 
+    @Override
+    public void searchEmptyCell() {
+        {
+            for (Cell cell : gameField) {
+                if (cell.IsEmptyCell()) {
+                    emptyCells.add(cell.numberCell);
+                }
+            }
 
+        }
+
+
+    }
 }

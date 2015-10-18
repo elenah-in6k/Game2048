@@ -2,33 +2,39 @@
  * Created by employee on 10/16/15.
  */
 public class Cell {
-    int row;
-    int column;
     int cellValue;
     int numberCell;
 
 
-    public Cell(int numberCell, int row, int column, int cellValue) {
+    public Cell(int numberCell, int cellValue) {
         this.numberCell = numberCell;
-        this.row = row;
-        this.column = column;
         this.cellValue = cellValue;
 
     }
 
     public int getNumberCell(){
+
         return numberCell;
     }
 
-    public int getCellRow() {
-        return row;
-    }
-
-    public int getCellColumn() {
-        return column;
-    }
-
     public int getCellValue() {
+
         return cellValue;
+    }
+
+    public boolean IsEmptyCell() {
+        if (cellValue == 0){
+            return true;
+        }
+        return false;
+    }
+    static Cell createEmptyCell(int number){
+        return new Cell (number,0);
+    }
+    boolean isEqualsCellValue(Cell cell){
+        if (cellValue == cell.cellValue){
+            return true;
+        }
+        return false;
     }
 }

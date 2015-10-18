@@ -11,14 +11,16 @@ public class CellTest {
 
     @Test
     public void testCreateEmptyCell(){
-        cell = new Cell(0, 0, 0);
-        assertThat(cell.getCellRow(), is(0));
-        assertThat(cell.getCellColumn(), is(0));
+        cell = new Cell(0, 0);
         assertThat(cell.getCellValue(), is(0));
 
-        cell = new Cell(2, 3, 1);
-        assertThat(cell.getCellRow(), is(2));
-        assertThat(cell.getCellColumn(), is(3));
+        cell = new Cell(1, 1);
         assertThat(cell.getCellValue(), is(1));
+    }
+
+    @Test
+    public void testIsEmptyCell(){
+        cell = new Cell (0,1);
+        assertThat(cell.IsEmptyCell(), is(false));
     }
 }

@@ -2,21 +2,21 @@
  * Created by employee on 10/16/15.
  */
 public class StaticCellPlaceGenerator implements CellPlaceGenerator {
-    int column;
-    int row;
 
-    public StaticCellPlaceGenerator(int row, int column) {
-        this.column = column;
-        this.row = row;
+    int cellNumber;
+
+    public StaticCellPlaceGenerator(int number) {
+
+        this.cellNumber = cellNumber;
     }
 
     @Override
-    public int getCellRow() {
-        return row;
+    public int getCellNumber() {
+        return cellNumber;
     }
 
     @Override
-    public int getCellColumn() {
-        return column;
+    public void searchEmptyCell() {
+
     }
 }

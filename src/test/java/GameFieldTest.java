@@ -17,40 +17,41 @@ public class GameFieldTest {
     @Test
     public void testCreateEmptyField() {
 
-        assertThat(gameField.toString(), is("0 0 0 0 " + "\n" +
-                "0 0 0 0 " + "\n" +
-                "0 0 0 0 " + "\n" +
-                "0 0 0 0 " + "\n"));
+        assertThat(gameField.toString(), is("0 0 0 0 "  +
+                "0 0 0 0 " +
+                "0 0 0 0 " +
+                "0 0 0 0 " ));
     }
 
     @Test
     public void testFillEmptyCell() {
-        gameField.fillEmptyCell();
-        assertThat(gameField.toString(), containsString("2"));
-      
         for (int i = 0; i < 16; i++) {
             gameField.fillEmptyCell();
         }
-        assertThat(gameField.toString(), is("2 2 2 2 " + "\n" +
-                "2 2 2 2 " + "\n" +
-                "2 2 2 2 " + "\n" +
-                "2 2 2 2 " + "\n"));
+        assertThat(gameField.toString(), is("2 2 2 2 " +
+                "2 2 2 2 " +
+                "2 2 2 2 " +
+                "2 2 2 2 "  ));
 
     }
 
-//    @Test
-//    public void testIsEmptyCell() {
-//        gameField.fillEmptyCell();
-//        assertThat(gameField.IsEmptyCell(2, 1), is(false));
-//        assertThat(gameField.IsEmptyCell(3, 1), is(true));
-//    }
-//
-//    @Test
-//    public void testFilledCellRandom() {
-//        gameField.fillEmptyCell();
-//        assertThat(gameField.toString(), containsString("2"));
-//
-//    }
+
+    @Test
+    public void testMoveRowRight() {
+        for (int i = 0; i < 16; i++) {
+            gameField.fillEmptyCell();
+        }
+        assertThat(gameField.toString(), is("2 2 2 2 " +
+                "2 2 2 2 " +
+                "2 2 2 2 " +
+                "2 2 2 2 "  ));
+        gameField.move(Direction.right);
+        assertThat(gameField.toString(), is("0 0 4 4 " +
+                "0 0 4 4 " +
+                "0 0 4 4 " +
+                "0 0 4 4 " ));
+    }
+
 
 
 }

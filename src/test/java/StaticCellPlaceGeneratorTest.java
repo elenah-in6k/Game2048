@@ -11,17 +11,14 @@ public class StaticCellPlaceGeneratorTest {
 
     @Test
     public void testGetCellPlace(){
-        staticCellPlace = new StaticCellPlaceGenerator(1,2);
-        assertThat(staticCellPlace.getCellRow(), is(1));
-        assertThat(staticCellPlace.getCellColumn(), is(2));
-        assertThat(staticCellPlace.getCellRow(), is(1));
-        assertThat(staticCellPlace.getCellColumn(), is(2));
+        staticCellPlace = new StaticCellPlaceGenerator(1);
+        assertThat(staticCellPlace.getCellNumber(), is(1));
+        assertThat(staticCellPlace.getCellNumber(), is(1));
 
-        staticCellPlace = new StaticCellPlaceGenerator(3,0);
-        assertThat(staticCellPlace.getCellRow(), is(3));
-        assertThat(staticCellPlace.getCellColumn(), is(0));
-        assertThat(staticCellPlace.getCellRow(), is(3));
-        assertThat(staticCellPlace.getCellColumn(), is(0));
+
+        staticCellPlace = new StaticCellPlaceGenerator(3);
+        assertThat(staticCellPlace.getCellNumber(), is(3));
+        assertThat(staticCellPlace.getCellNumber(), is(3));
 
 
     }
