@@ -75,6 +75,41 @@ public class GameFieldTest {
 
     }
 
+    @Test
+    public void testMoveUp(){
+        gameField = new GameField();
+        for (int i = 0; i < 16; i++) {
+            gameField.fillEmptyCell();
+        }
+        assertThat(gameField.toString(), is("2 2 2 2 " +
+                "2 2 2 2 " +
+                "2 2 2 2 " +
+                "2 2 2 2 "  ));
+        gameField.move(Direction.up);
+        assertThat(gameField.toString(), is("4 4 4 4 " +
+                "4 4 4 4 " +
+                "0 0 0 0 " +
+                "0 0 0 0 " ));
+        
+    }
+
+    @Test
+    public void testMoveDown(){
+        gameField = new GameField();
+        for (int i = 0; i < 16; i++) {
+            gameField.fillEmptyCell();
+        }
+        assertThat(gameField.toString(), is("2 2 2 2 " +
+                "2 2 2 2 " +
+                "2 2 2 2 " +
+                "2 2 2 2 "  ));
+        gameField.move(Direction.down);
+        assertThat(gameField.toString(), is("0 0 0 0 " +
+                        "0 0 0 0 " +
+                        "4 4 4 4 " +
+                        "4 4 4 4 " ));
+
+    }
 
 
 }

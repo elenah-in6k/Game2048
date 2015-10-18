@@ -52,12 +52,85 @@ public class GameField {
     }
 
     private void moveColumnDown(int i) {
+        int initialValue = i ;
+        int finalValue = (SIZE * (SIZE - 1)) + i;
+        i = finalValue;
+        downOffset(initialValue, finalValue);
+        while ((initialValue < i) ) {
+            getSummEqualCellsAfterDownOffset(i);
+            i -= SIZE;
+        }
+        downOffset(initialValue, finalValue);
 
+    }
+
+    private void getSummEqualCellsAfterDownOffset(int i) {
+        Cell cellUpperOld = gameField.get(i-SIZE);
+        Cell cellLowerOld = gameField.get(i);
+        if((!cellLowerOld.IsEmptyCell())&&(cellLowerOld.isEqualsCellValue(cellUpperOld))){
+            gameScore += cellLowerOld.cellValue*2;
+            gameField.set(i, new Cell(i, cellUpperOld.cellValue*2));
+            gameField.set(i-SIZE,Cell.createEmptyCell(i-SIZE));
+        }
+    }
+
+    private void downOffset(int initialValue, int finalValue) {
+        int i = finalValue;
+        int j = i;
+        while (initialValue < j){
+            while ((initialValue  < i) ){
+                Cell cellUpperOld = gameField.get(i-SIZE);
+                Cell cellLowerOld = gameField.get(i);
+                if(cellLowerOld.IsEmptyCell()&& !cellUpperOld.IsEmptyCell()){
+                    gameField.set(i, new Cell(i, cellUpperOld.cellValue));
+                    gameField.set(i-SIZE, Cell.createEmptyCell(i-SIZE));
+                }
+                i -= SIZE;
+            }
+            j -= SIZE;
+        }
     }
 
     private void moveColumnUp(int i) {
-
+        int initialValue = i ;
+        int finalValue = (SIZE * 2) + i;
+        i = initialValue;
+        upOffset(initialValue, finalValue);
+        while ((finalValue >= i) ) {
+            getSummEqualCellsAfterUpOffset(i);
+            i += SIZE;
+        }
+        upOffset(initialValue, finalValue);
     }
+
+    private void upOffset(int initialValue, int finalValue) {
+        int i = initialValue;
+        int j = i;
+        while (finalValue >= j){
+            while ((finalValue >= i) ){
+                Cell cellUpperOld = gameField.get(i );
+                Cell cellLowerOld = gameField.get(i+SIZE);
+                if(!cellLowerOld.IsEmptyCell()&& cellUpperOld.IsEmptyCell()){
+                    gameField.set(i, new Cell(i, cellLowerOld.cellValue));
+                    gameField.set(i+SIZE, Cell.createEmptyCell(i+SIZE));
+                }
+                i += SIZE;
+            }
+            j += SIZE;
+        }
+    }
+
+    private void getSummEqualCellsAfterUpOffset(int i) {
+        Cell cellUpperOld = gameField.get(i);
+        Cell cellLowerOld = gameField.get(i+SIZE);
+        if((!cellUpperOld.IsEmptyCell())&&(cellUpperOld.isEqualsCellValue(cellLowerOld))){
+            gameScore += cellLowerOld.cellValue*2;
+            gameField.set(i, new Cell(i, cellLowerOld.cellValue*2));
+            gameField.set(i+SIZE,Cell.createEmptyCell(i+SIZE));
+        }
+    }
+
+
 
     private void moveRowLeft(int i) {
         int initialValue = i * SIZE;
@@ -75,16 +148,11 @@ public class GameField {
     private void getSummEqualCellsAfterLeftOffset(int i) {
         Cell cellLeftOld = gameField.get(i);
         Cell cellRightOld = gameField.get(i+1);
-        Cell cellLeftNew = cellLeftOld;
-        Cell cellRightNew = cellRightOld;
         if((!cellLeftOld.IsEmptyCell())&&(cellLeftOld.isEqualsCellValue(cellRightOld))){
              gameScore += cellRightOld.cellValue*2;
-            cellLeftNew = new Cell(i, cellRightOld.cellValue*2);
-            cellRightNew = Cell.createEmptyCell(i);
+            gameField.set(i, new Cell(i, cellRightOld.cellValue*2));
+            gameField.set(i+1,Cell.createEmptyCell(i));
         }
-        gameField.set(i,cellLeftNew);
-        gameField.set(i+1,cellRightNew);
-
     }
 
     private void leftOffset(int initialValue, int finalValue) {
@@ -145,10 +213,6 @@ public class GameField {
         }
         gameField.set(i-1,cellLeftNew);
         gameField.set(i,cellRightNew);
-    }
-
-    void setSomeCellsValue( int i, Cell cellLeft, Cell cellRight){
-
     }
 
     public String toString(){
