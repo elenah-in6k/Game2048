@@ -142,4 +142,17 @@ public class GameFieldTest {
         assertThat(gameField.getScore(), is(64));
     }
 
+    @Test
+    public void testHasAvaibleMoves(){
+        gameField = new GameField();
+        for (int i = 0; i < 16; i++) {
+            gameField.fillEmptyCell();
+        }
+        assertThat(gameField.toString(), is("2 2 2 2 " +
+                "2 2 2 2 " +
+                "2 2 2 2 " +
+                "2 2 2 2 "  ));
+        assertThat(gameField.hasAvaibleMoves(), is(true));
+    }
+
 }

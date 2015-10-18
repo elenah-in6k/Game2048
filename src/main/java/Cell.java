@@ -22,7 +22,7 @@ public class Cell {
         return cellValue;
     }
 
-    public boolean IsEmptyCell() {
+    public boolean isEmptyCell() {
         if (cellValue == 0){
             return true;
         }

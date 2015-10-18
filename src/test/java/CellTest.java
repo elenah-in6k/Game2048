@@ -21,7 +21,7 @@ public class CellTest {
     @Test
     public void testIsEmptyCell(){
         cell = new Cell (0,1);
-        assertThat(cell.IsEmptyCell(), is(false));
+        assertThat(cell.isEmptyCell(), is(false));
     }
 
     @Test

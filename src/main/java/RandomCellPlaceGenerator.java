@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
@@ -30,7 +29,7 @@ public class RandomCellPlaceGenerator implements CellPlaceGenerator {
     public void searchEmptyCell() {
         {
             for (Cell cell : gameField) {
-                if (cell.IsEmptyCell()) {
+                if (cell.isEmptyCell()) {
                     emptyCells.add(cell.numberCell);
                 }
             }

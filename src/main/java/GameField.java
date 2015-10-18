@@ -26,6 +26,50 @@ public class GameField {
         gameField.set(cellNumber, cell);
     }
 
+    public boolean hasCellWith2048() {
+        for(Cell cell:gameField){
+            if(cell.isCellWith2048()){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public int getScore() {
+
+        return gameScore;
+    }
+
+    public boolean hasAvaibleMoves() {
+        if (!isFieldFilled()){
+            return true;
+        }else {
+            int i=0;
+            while(i < SIZE * (SIZE - 1)){
+                int j=0;
+                while (j+i < SIZE - 1){
+                    if(gameField.get(j).isEqualsCellValue(gameField.get(j+1))||
+                            gameField.get(j).isEqualsCellValue(gameField.get(i+SIZE))){
+                        return true;
+                    }
+                    j++;
+                }
+                i += SIZE;
+            }
+        }
+
+
+
+        return false;
+    }
+
+    public boolean isFieldFilled() {
+        for (Cell cell : gameField) {
+            if ( cell.isEmptyCell() )
+                    return false;
+        }
+        return true;
+    }
 
     public void move(Direction direction){
         int i = 0;
@@ -61,16 +105,6 @@ public class GameField {
 
     }
 
-    private void getSummEqualCellsAfterDownOffset(int i) {
-        Cell cellUpperOld = gameField.get(i-SIZE);
-        Cell cellLowerOld = gameField.get(i);
-        if((!cellLowerOld.IsEmptyCell())&&(cellLowerOld.isEqualsCellValue(cellUpperOld))){
-            gameScore += cellLowerOld.cellValue*2;
-            gameField.set(i, new Cell(i, cellUpperOld.cellValue*2));
-            gameField.set(i-SIZE,Cell.createEmptyCell(i-SIZE));
-        }
-    }
-
     private void downOffset(int initialValue, int finalValue) {
         int i = finalValue;
         int j = i;
@@ -78,13 +112,23 @@ public class GameField {
             while ((initialValue  < i) ){
                 Cell cellUpperOld = gameField.get(i-SIZE);
                 Cell cellLowerOld = gameField.get(i);
-                if(cellLowerOld.IsEmptyCell()&& !cellUpperOld.IsEmptyCell()){
+                if(cellLowerOld.isEmptyCell()&& !cellUpperOld.isEmptyCell()){
                     gameField.set(i, new Cell(i, cellUpperOld.cellValue));
                     gameField.set(i-SIZE, Cell.createEmptyCell(i-SIZE));
                 }
                 i -= SIZE;
             }
             j -= SIZE;
+        }
+    }
+
+    private void getSummEqualCellsAfterDownOffset(int i) {
+        Cell cellUpperOld = gameField.get(i-SIZE);
+        Cell cellLowerOld = gameField.get(i);
+        if((!cellLowerOld.isEmptyCell())&&(cellLowerOld.isEqualsCellValue(cellUpperOld))){
+            gameScore += cellLowerOld.cellValue*2;
+            gameField.set(i, new Cell(i, cellUpperOld.cellValue*2));
+            gameField.set(i-SIZE,Cell.createEmptyCell(i-SIZE));
         }
     }
 
@@ -107,7 +151,7 @@ public class GameField {
             while ((finalValue >= i) ){
                 Cell cellUpperOld = gameField.get(i );
                 Cell cellLowerOld = gameField.get(i+SIZE);
-                if(!cellLowerOld.IsEmptyCell()&& cellUpperOld.IsEmptyCell()){
+                if(!cellLowerOld.isEmptyCell()&& cellUpperOld.isEmptyCell()){
                     gameField.set(i, new Cell(i, cellLowerOld.cellValue));
                     gameField.set(i+SIZE, Cell.createEmptyCell(i+SIZE));
                 }
@@ -120,14 +164,12 @@ public class GameField {
     private void getSummEqualCellsAfterUpOffset(int i) {
         Cell cellUpperOld = gameField.get(i);
         Cell cellLowerOld = gameField.get(i+SIZE);
-        if((!cellUpperOld.IsEmptyCell())&&(cellUpperOld.isEqualsCellValue(cellLowerOld))){
+        if((!cellUpperOld.isEmptyCell())&&(cellUpperOld.isEqualsCellValue(cellLowerOld))){
             gameScore += cellLowerOld.cellValue*2;
             gameField.set(i, new Cell(i, cellLowerOld.cellValue*2));
             gameField.set(i+SIZE,Cell.createEmptyCell(i+SIZE));
         }
     }
-
-
 
     private void moveRowLeft(int i) {
         int initialValue = i * SIZE;
@@ -145,7 +187,7 @@ public class GameField {
     private void getSummEqualCellsAfterLeftOffset(int i) {
         Cell cellLeftOld = gameField.get(i);
         Cell cellRightOld = gameField.get(i+1);
-        if((!cellLeftOld.IsEmptyCell())&&(cellLeftOld.isEqualsCellValue(cellRightOld))){
+        if((!cellLeftOld.isEmptyCell())&&(cellLeftOld.isEqualsCellValue(cellRightOld))){
              gameScore += cellRightOld.cellValue*2;
             gameField.set(i, new Cell(i, cellRightOld.cellValue*2));
             gameField.set(i+1,Cell.createEmptyCell(i));
@@ -159,7 +201,7 @@ public class GameField {
             while ((finalValue > i) ){
                 Cell cellLeftOld = gameField.get(i );
                 Cell cellRightOld = gameField.get(i+1);
-                if(!cellRightOld.IsEmptyCell()&& cellLeftOld.IsEmptyCell()){
+                if(!cellRightOld.isEmptyCell()&& cellLeftOld.isEmptyCell()){
                     gameField.set(i, new Cell(i, cellRightOld.cellValue));
                     gameField.set(i+1, Cell.createEmptyCell(i));
                 }
@@ -188,7 +230,7 @@ public class GameField {
         while ((initialValue < i) ){
             Cell cellLeftOld = gameField.get(i - 1);
             Cell cellRightOld = gameField.get(i);
-            if((cellRightOld.IsEmptyCell())&& (!cellLeftOld.IsEmptyCell())){
+            if((cellRightOld.isEmptyCell())&& (!cellLeftOld.isEmptyCell())){
                 gameField.set(i, new Cell(i, cellLeftOld.cellValue));
                 gameField.set(i-1, Cell.createEmptyCell(i-1));
             }
@@ -203,7 +245,7 @@ public class GameField {
         Cell cellRightOld = gameField.get(i);
         Cell cellLeftNew = cellLeftOld;
         Cell cellRightNew = cellRightOld;
-        if((!cellRightOld.IsEmptyCell())&&(cellRightOld.isEqualsCellValue(cellLeftOld))){
+        if((!cellRightOld.isEmptyCell())&&(cellRightOld.isEqualsCellValue(cellLeftOld))){
                 cellRightNew = new Cell(i, cellRightOld.cellValue*2);
                  gameScore += cellRightOld.cellValue*2;
                  cellLeftNew = Cell.createEmptyCell(i-1);
@@ -221,17 +263,4 @@ public class GameField {
         return gameFieldValue;
     }
 
-
-    public boolean hasCellWith2048() {
-        for(Cell cell:gameField){
-            if(cell.isCellWith2048()){
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public int getScore() {
-        return gameScore;
-    }
 }
