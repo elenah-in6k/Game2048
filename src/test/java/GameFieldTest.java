@@ -108,8 +108,38 @@ public class GameFieldTest {
                         "0 0 0 0 " +
                         "4 4 4 4 " +
                         "4 4 4 4 " ));
-
     }
 
+    @Test
+    public void testHasCellWith2048(){
+        gameField = new GameField();
+        for (int i = 0; i < 16; i++) {
+            gameField.fillEmptyCell();
+        }
+        assertThat(gameField.toString(), is("2 2 2 2 " +
+                "2 2 2 2 " +
+                "2 2 2 2 " +
+                "2 2 2 2 "  ));
+        assertThat(gameField.hasCellWith2048(),is(false));
+        gameField.gameField.set(5,new Cell(5,2048));
+        assertThat(gameField.hasCellWith2048(),is(true));
+    }
+
+    @Test
+    public void testGetScore(){
+        gameField = new GameField();
+        for (int i = 0; i < 16; i++) {
+            gameField.fillEmptyCell();
+        }
+        assertThat(gameField.toString(), is("2 2 2 2 " +
+                "2 2 2 2 " +
+                "2 2 2 2 " +
+                "2 2 2 2 "  ));
+        gameField.move(Direction.right);
+
+        assertThat(gameField.getScore(), is(32));
+        gameField.move(Direction.right);
+        assertThat(gameField.getScore(), is(64));
+    }
 
 }

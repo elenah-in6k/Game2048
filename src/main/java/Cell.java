@@ -37,4 +37,11 @@ public class Cell {
         }
         return false;
     }
+
+    public boolean isCellWith2048() {
+        if(cellValue == 2048){
+            return true;
+        }
+        return false;
+    }
 }

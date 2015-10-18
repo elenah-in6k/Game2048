@@ -23,4 +23,12 @@ public class CellTest {
         cell = new Cell (0,1);
         assertThat(cell.IsEmptyCell(), is(false));
     }
+
+    @Test
+    public void testIsCellWith2048(){
+        cell = new Cell (0,2);
+        assertThat(cell.isCellWith2048(), is(false));
+        cell = new Cell (1,2048);
+        assertThat(cell.isCellWith2048(), is(true));
+    }
 }

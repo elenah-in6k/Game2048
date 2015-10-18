@@ -7,13 +7,10 @@ import java.util.List;
 public class GameField {
     List<Cell> gameField = new ArrayList<>();
     String gameFieldValue ;
-    private CellValueGenerator cellValue = new StaticCellValueGenerator(2);
-   private CellPlaceGenerator cellPlace ;
     final int SIZE = 4;
-    int cellRow;
-    int cellColumn;
     int gameScore = 0;
-
+    private CellValueGenerator cellValue = new StaticCellValueGenerator(2);
+    private CellPlaceGenerator cellPlace ;
 
     public GameField() {
         for( int i = 0; i < SIZE * SIZE; i++){
@@ -225,5 +222,16 @@ public class GameField {
     }
 
 
+    public boolean hasCellWith2048() {
+        for(Cell cell:gameField){
+            if(cell.isCellWith2048()){
+                return true;
+            }
+        }
+        return false;
+    }
 
+    public int getScore() {
+        return gameScore;
+    }
 }
