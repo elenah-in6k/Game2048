@@ -9,5 +9,14 @@ public class PrinterTest {
         GameField gf = new GameField();
         Printer printer = new Printer(gf);
         printer.printGameField();
+        String output = "-----   -----   -----   -----\n"+
+                "|   0 | |   0 | |   0 | |   0 |"+"\n"+
+                "-----   -----   -----   -----"+"\n"+
+                        "-----   -----   -----   -----"+"\n"+
+                "|   0 | |   0 | |   0 | |   0 |"+"\n"+
+                "-----   -----   -----   -----"+"\n"+
+                        "-----   -----   -----   -----"+"\n"+
+                "|   0 | |   0 | |   0 | |   0 |"+"\n"+
+                "-----   -----   -----   -----"+"\n";
     }
 }
