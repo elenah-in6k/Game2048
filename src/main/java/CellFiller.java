@@ -1,7 +1,7 @@
 /**
  * Created by employee on 10/16/15.
  */
-public interface CellValueGenerator {
+public interface CellFiller {
 
         public int getCellValue();
 

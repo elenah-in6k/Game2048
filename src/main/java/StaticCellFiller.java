@@ -1,9 +1,9 @@
 /**
  * Created by employee on 10/16/15.
  */
-public class StaticCellValueGenerator implements CellValueGenerator {
+public class StaticCellFiller implements CellFiller {
     int valueOfCell;
-    public StaticCellValueGenerator(int value) {
+    public StaticCellFiller(int value) {
             valueOfCell = value;
     }
 

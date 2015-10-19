@@ -3,6 +3,6 @@ import java.util.List;
 /**
  * Created by employee on 10/16/15.
  */
-public interface CellPlaceGenerator {
+public interface CellSelector {
     Cell selectCell(List<Cell> cells);
 }

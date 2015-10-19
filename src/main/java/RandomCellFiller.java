@@ -3,7 +3,7 @@ import java.util.Random;
 /**
  * Created by employee on 10/16/15.
  */
-public class RandomCellValueGenerator implements CellValueGenerator {
+public class RandomCellFiller implements CellFiller {
     private Random random = new Random();
 
     @Override
