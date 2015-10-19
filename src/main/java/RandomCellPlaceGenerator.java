@@ -7,30 +7,10 @@ import java.util.Random;
  */
 public class RandomCellPlaceGenerator implements CellPlaceGenerator {
     Random random = new Random();
-    private List<Cell> gameField;
-    private ArrayList<Integer> emptyCells = new ArrayList<>();
-
-    public RandomCellPlaceGenerator(List<Cell> gameField) {
-        this.gameField = gameField;
-        searchEmptyCell();
-    }
 
     @Override
-    public int getCellNumber() {
-
-        int emptyCellNumber = random.nextInt(emptyCells.size());
-        int cellNumber = emptyCells.get(emptyCellNumber);
-        emptyCells.remove(emptyCellNumber);
-        emptyCells.trimToSize();
-        return cellNumber;
+    public Cell selectCell(List<Cell> cells) {
+        return cells.get(random.nextInt(cells.size()));
     }
 
-    @Override
-    public void searchEmptyCell() {
-            for (Cell cell : gameField) {
-                if (cell.isEmptyCell()) {
-                    emptyCells.add(cell.numberCell);
-                }
-            }
-    }
 }

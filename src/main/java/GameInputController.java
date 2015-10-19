@@ -1,28 +1,35 @@
+import java.io.IOException;
 import java.io.InputStream;
-import java.util.Scanner;
 
 /**
  * Created by employee on 10/19/15.
  */
 public class GameInputController {
 
-    Scanner inputScanner;
+    InputStream input;
+    private byte[] inputChar = new byte[1];
 
     public GameInputController(InputStream inputStream) {
-
-        inputScanner = new Scanner(inputStream);
+        input = inputStream;
     }
 
     public Direction getDirection() {
-        int inputDirection = inputScanner.nextInt();
-        if ( inputDirection == 6)
-            return Direction.right;
-        else if ( inputDirection == 4)
-            return Direction.left;
-        else if ( inputDirection == 8)
-            return Direction.up;
-        else
-            return Direction.down;
-
+        try {
+            input.read(inputChar);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        switch (inputChar[0]) {
+            case '6':
+                return Direction.right;
+            case '4':
+                return Direction.left;
+            case '8':
+                return Direction.up;
+            case '2':
+                return Direction.down;
+            default:
+                throw new UnsupportedOperationException();
+        }
     }
 }

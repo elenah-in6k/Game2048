@@ -2,7 +2,8 @@
  * Created by Алена on 18.10.2015.
  */
 public enum Direction {
-     right,
+    //caps
+    right,
     left,
     up,
     down,

@@ -5,16 +5,10 @@ public class Cell {
     int cellValue;
     int numberCell;
 
-
-    public Cell(int numberCell, int cellValue) {
-        this.numberCell = numberCell;
+    public Cell(int cellValue) {
+//        this.numberCell = numberCell;
         this.cellValue = cellValue;
 
-    }
-
-    public int getNumberCell(){
-
-        return numberCell;
     }
 
     public int getCellValue() {
@@ -22,24 +16,26 @@ public class Cell {
         return cellValue;
     }
 
-    public boolean isEmptyCell() {
-        if (cellValue == 0){
+    public boolean isEmpty() {
+        if (cellValue == 0) {
             return true;
         }
         return false;
     }
-    static Cell createEmptyCell(int number){
-        return new Cell (number,0);
+
+    static Cell createEmptyCell() {
+        return new Cell(0);
     }
-    boolean isEqualsCellValue(Cell cell){
-        if (cellValue == cell.cellValue){
+
+    boolean isEquals(Cell cell) {
+        if (cellValue == cell.cellValue) {
             return true;
         }
         return false;
     }
 
     public boolean isCellWith2048() {
-        if(cellValue == 2048){
+        if (cellValue == 2048) {
             return true;
         }
         return false;

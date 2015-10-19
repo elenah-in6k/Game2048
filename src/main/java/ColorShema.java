@@ -12,9 +12,4 @@ public class ColorShema {
      final String	BACKGROUND_WHITE	= "\u001B[47m";
      final String   RESET = "\u001B[0m";
 
-    ColorShema(){
-
-    }
-
-
 }

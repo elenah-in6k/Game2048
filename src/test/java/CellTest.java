@@ -10,25 +10,24 @@ public class CellTest {
     Cell cell;
 
     @Test
-    public void testCreateEmptyCell(){
-        cell = new Cell(0, 0);
+    public void testCreateEmptyCell() {
+        cell = new Cell(0);
         assertThat(cell.getCellValue(), is(0));
-
-        cell = new Cell(1, 1);
+        cell = new Cell(1);
         assertThat(cell.getCellValue(), is(1));
     }
 
     @Test
-    public void testIsEmptyCell(){
-        cell = new Cell (0,1);
-        assertThat(cell.isEmptyCell(), is(false));
+    public void testIsEmptyCell() {
+        cell = new Cell(1);
+        assertThat(cell.isEmpty(), is(false));
     }
 
     @Test
-    public void testIsCellWith2048(){
-        cell = new Cell (0,2);
+    public void testIsCellWith2048() {
+        cell = new Cell(2);
         assertThat(cell.isCellWith2048(), is(false));
-        cell = new Cell (1,2048);
+        cell = new Cell(2048);
         assertThat(cell.isCellWith2048(), is(true));
     }
 }
