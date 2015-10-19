@@ -35,7 +35,6 @@ public class GameFieldTest {
 
     }
 
-
     @Test
     public void testMoveRowRight() {
         for (int i = 0; i < 16; i++) {
@@ -50,6 +49,13 @@ public class GameFieldTest {
                 "0 0 4 4 " +
                 "0 0 4 4 " +
                 "0 0 4 4 " ));
+        gameField.move(Direction.right);
+       gameField.move(Direction.left);
+       assertThat(gameField.toString(), is("8 0 0 0 " +
+               "8 0 0 0 " +
+                "8 0 0 0 " +
+                 "8 0 0 0 " ));
+
     }
 
     @Test

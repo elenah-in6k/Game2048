@@ -12,30 +12,25 @@ public class RandomCellPlaceGenerator implements CellPlaceGenerator {
 
     public RandomCellPlaceGenerator(List<Cell> gameField) {
         this.gameField = gameField;
-
+        searchEmptyCell();
     }
 
     @Override
     public int getCellNumber() {
-        searchEmptyCell();
+
         int emptyCellNumber = random.nextInt(emptyCells.size());
         int cellNumber = emptyCells.get(emptyCellNumber);
         emptyCells.remove(emptyCellNumber);
-
+        emptyCells.trimToSize();
         return cellNumber;
     }
 
     @Override
     public void searchEmptyCell() {
-        {
             for (Cell cell : gameField) {
                 if (cell.isEmptyCell()) {
                     emptyCells.add(cell.numberCell);
                 }
             }
-
-        }
-
-
     }
 }

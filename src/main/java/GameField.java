@@ -16,6 +16,13 @@ public class GameField {
         for( int i = 0; i < SIZE * SIZE; i++){
             gameField.add(Cell.createEmptyCell(i));
         }
+
+    }
+
+    public void startNewGame(){
+        fillEmptyCell();
+        fillEmptyCell();
+
     }
 
     public void fillEmptyCell() {
@@ -24,6 +31,7 @@ public class GameField {
         Cell cell = gameField.get(cellNumber);
         cell.cellValue = cellValue.getCellValue();
         gameField.set(cellNumber, cell);
+
     }
 
     public boolean hasCellWith2048() {
@@ -63,7 +71,7 @@ public class GameField {
         return false;
     }
 
-    public boolean isFieldFilled() {
+    private boolean isFieldFilled() {
         for (Cell cell : gameField) {
             if ( cell.isEmptyCell() )
                     return false;
@@ -106,9 +114,9 @@ public class GameField {
     }
 
     private void downOffset(int initialValue, int finalValue) {
-        int i = finalValue;
-        int j = i;
+        int j = finalValue;
         while (initialValue < j){
+            int i = finalValue;
             while ((initialValue  < i) ){
                 Cell cellUpperOld = gameField.get(i-SIZE);
                 Cell cellLowerOld = gameField.get(i);
@@ -145,9 +153,9 @@ public class GameField {
     }
 
     private void upOffset(int initialValue, int finalValue) {
-        int i = initialValue;
-        int j = i;
+        int j = initialValue;
         while (finalValue >= j){
+            int i = initialValue;
             while ((finalValue >= i) ){
                 Cell cellUpperOld = gameField.get(i );
                 Cell cellLowerOld = gameField.get(i+SIZE);
@@ -173,7 +181,7 @@ public class GameField {
 
     private void moveRowLeft(int i) {
         int initialValue = i * SIZE;
-        int finalValue = ((i+1) * SIZE) - 1;
+        int finalValue = ((i+1) * SIZE)-1 ;
         i = initialValue;
         leftOffset(initialValue, finalValue);
         while ((finalValue > i) ) {
@@ -195,19 +203,20 @@ public class GameField {
     }
 
     private void leftOffset(int initialValue, int finalValue) {
-        int i = initialValue;
-        int j = i;
-        while (finalValue > j){
+        int j = 0;
+        while (finalValue >= j){
+            int i = initialValue;
             while ((finalValue > i) ){
                 Cell cellLeftOld = gameField.get(i );
                 Cell cellRightOld = gameField.get(i+1);
                 if(!cellRightOld.isEmptyCell()&& cellLeftOld.isEmptyCell()){
                     gameField.set(i, new Cell(i, cellRightOld.cellValue));
-                    gameField.set(i+1, Cell.createEmptyCell(i));
+                    gameField.set(i+1, Cell.createEmptyCell(i+1));
+
                 }
                 i++;
             }
-            j++;
+            j++; ;
         }
     }
 
@@ -224,9 +233,10 @@ public class GameField {
     }
 
     private void offsetRight(int initialValue, int finalValue) {
-        int i = finalValue;
-        int j = i;
+
+        int j = finalValue;
         while (initialValue < j){
+            int i = finalValue;
         while ((initialValue < i) ){
             Cell cellLeftOld = gameField.get(i - 1);
             Cell cellRightOld = gameField.get(i);
