@@ -1,3 +1,7 @@
+import Game.ColorShema;
+import Game.GameField;
+import Game.GameField.*;
+
 /**
  * Created by Алена on 19.10.2015.
  */
@@ -13,7 +17,7 @@ public class Printer {
     void printGameField(){
         int i=0;
         System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-        System.out.println("Score: "+gameField.gameScore);
+        System.out.println("Score: "+gameField.getScore());
         int j = 0;
         while (i < gameField.SIZE  ) {
                 System.out.println(" ------  ------  ------  ------ ");

@@ -1,3 +1,5 @@
+package Game;
+
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -21,13 +23,13 @@ public class GameInputController {
         }
         switch (inputChar[0]) {
             case '6':
-                return Direction.right;
+                return Direction.RIGHT;
             case '4':
-                return Direction.left;
+                return Direction.LEFT;
             case '8':
-                return Direction.up;
+                return Direction.UP;
             case '2':
-                return Direction.down;
+                return Direction.DOWN;
             default:
                 throw new UnsupportedOperationException();
         }

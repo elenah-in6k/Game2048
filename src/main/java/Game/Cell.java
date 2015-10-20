@@ -1,8 +1,10 @@
+package Game;
+
 /**
  * Created by employee on 10/16/15.
  */
 public class Cell {
-    int cellValue;
+    public int cellValue;
     int numberCell;
 
     public Cell(int cellValue) {

@@ -1,3 +1,10 @@
+package Game;
+
+import Filler.CellFiller;
+import Filler.CellSelector;
+import Filler.RandomCellSelector;
+import Filler.StaticCellFiller;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -6,8 +13,8 @@ import java.util.stream.Collectors;
  * Created by employee on 10/16/15.
  */
 public class GameField {
-    static final int SIZE = 4;
-    List<Cell> gameField = new ArrayList<>(SIZE * SIZE);
+    public static final int SIZE = 4;
+    public List<Cell> gameField = new ArrayList<>(SIZE * SIZE);
     int gameScore = 0;
     private CellFiller cellValue = new StaticCellFiller(2);
     private CellSelector cellSelector = new RandomCellSelector();
@@ -69,19 +76,19 @@ public class GameField {
         int i = 0;
         while (i < SIZE) {
             switch (direction) {
-                case right:
+                case RIGHT:
                     move = new MoveRight(gameField);
                     gameScore += move.move(i);
                     break;
-                case left:
+                case LEFT:
                     move = new MoveLeft(gameField);
                     gameScore += move.move(i);
                     break;
-                case up:
+                case UP:
                     move = new MoveUp(gameField);
                     gameScore += move.move(i);
                     break;
-                case down:
+                case DOWN:
                     move = new MoveDown(gameField);
                     gameScore += move.move(i);
                     break;

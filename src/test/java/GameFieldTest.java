@@ -1,3 +1,6 @@
+import Game.Cell;
+import Game.Direction;
+import Game.GameField;
 import org.junit.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -44,14 +47,14 @@ public class GameFieldTest {
                 "2 2 2 2 " +
                 "2 2 2 2 " +
                 "2 2 2 2 "));
-        gameField.move(Direction.right);
+        gameField.move(Direction.RIGHT);
         assertThat(gameField.toString(), is(
                 "0 0 4 4 " +
                 "0 0 4 4 " +
                 "0 0 4 4 " +
                 "0 0 4 4 "));
-        gameField.move(Direction.right);
-        gameField.move(Direction.left);
+        gameField.move(Direction.RIGHT);
+        gameField.move(Direction.LEFT);
         assertThat(gameField.toString(), is(
                 "8 0 0 0 " +
                 "8 0 0 0 " +
@@ -67,18 +70,19 @@ public class GameFieldTest {
                 "2 2 2 2 " +
                 "2 2 2 2 " +
                 "2 2 2 2 "));
-        gameField.move(Direction.left);
+        gameField.move(Direction.LEFT);
         assertThat(gameField.toString(), is("4 4 0 0 " +
                 "4 4 0 0 " +
                 "4 4 0 0 " +
                 "4 4 0 0 "));
-        gameField.move(Direction.left);
+        gameField.move(Direction.LEFT);
         assertThat(gameField.toString(), is("8 0 0 0 " +
                 "8 0 0 0 " +
                 "8 0 0 0 " +
                 "8 0 0 0 "));
 
     }
+
 
     @Test
     public void testMoveUp() {
@@ -88,7 +92,7 @@ public class GameFieldTest {
                 "2 2 2 2 " +
                 "2 2 2 2 " +
                 "2 2 2 2 "));
-        gameField.move(Direction.up);
+        gameField.move(Direction.UP);
         assertThat(gameField.toString(), is("4 4 4 4 " +
                 "4 4 4 4 " +
                 "0 0 0 0 " +
@@ -104,7 +108,7 @@ public class GameFieldTest {
                 "2 2 2 2 " +
                 "2 2 2 2 " +
                 "2 2 2 2 "));
-        gameField.move(Direction.down);
+        gameField.move(Direction.DOWN);
         assertThat(gameField.toString(), is("0 0 0 0 " +
                 "0 0 0 0 " +
                 "4 4 4 4 " +
@@ -132,10 +136,10 @@ public class GameFieldTest {
                 "2 2 2 2 " +
                 "2 2 2 2 " +
                 "2 2 2 2 "));
-        gameField.move(Direction.right);
+        gameField.move(Direction.RIGHT);
 
         assertThat(gameField.getScore(), is(32));
-        gameField.move(Direction.right);
+        gameField.move(Direction.RIGHT);
         assertThat(gameField.getScore(), is(64));
     }
 

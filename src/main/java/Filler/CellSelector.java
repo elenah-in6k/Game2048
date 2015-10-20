@@ -1,3 +1,7 @@
+package Filler;
+
+import Game.Cell;
+
 import java.util.List;
 
 /**

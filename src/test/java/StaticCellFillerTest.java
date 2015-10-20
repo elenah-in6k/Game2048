@@ -1,3 +1,5 @@
+import Filler.CellFiller;
+import Filler.StaticCellFiller;
 import org.junit.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
