@@ -17,7 +17,6 @@ public class MoveUp extends Move {
             int i = initialValue;
             while ((finalValue >= i)) {
                 Pair pair = getCellPair(i);
-
                 pair.pull();
                 i += SIZE;
             }

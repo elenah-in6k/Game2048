@@ -8,16 +8,12 @@ import java.util.List;
 public class MoveDown extends Move {
     @Override
     void offset(int initialValue, int finalValue) {
-        int j = finalValue;
-        while (initialValue < j) {
-            int i = finalValue;
-            while ((initialValue < i)) {
-                Cell cellUpperOld = gameField.get(i - SIZE);
-                Cell cellLowerOld = gameField.get(i);
-                if (cellLowerOld.isEmpty() && !cellUpperOld.isEmpty()) {
-                    gameField.set(i, new Cell(cellUpperOld.cellValue));
-                    gameField.set(i - SIZE, Cell.createEmptyCell());
-                }
+        int j = initialValue;
+        while ( finalValue < j) {
+            int i = initialValue;
+            while ((finalValue  < i)) {
+                Pair pair = getCellPair(i);
+                pair.pull();
                 i -= SIZE;
             }
             j -= SIZE;
@@ -26,27 +22,26 @@ public class MoveDown extends Move {
 
     @Override
     void getSumEqualCellsAfterOffset(int initialValue, int finalValue) {
-        int i = finalValue;
-        while ((initialValue < i)) {
-            Cell cellUpperOld = gameField.get(i - SIZE);
-            Cell cellLowerOld = gameField.get(i);
-            if ((!cellLowerOld.isEmpty()) && (cellLowerOld.isEquals(cellUpperOld))) {
-                gameScore += cellLowerOld.cellValue * 2;
-                gameField.set(i, new Cell(cellUpperOld.cellValue * 2));
-                gameField.set(i - SIZE, Cell.createEmptyCell());
-            }
+        int i = initialValue;
+        while ((finalValue < i)) {
+            Pair pair = getCellPair(i);
+            gameScore += pair.merge();
             i -= SIZE;
         }
     }
 
-    @Override
-    int getInitialValue(int i) {
-        return i;
+    private Pair getCellPair(int posInLine) {
+        return new Pair(gameField.get(posInLine), gameField.get(posInLine - SIZE));
     }
 
     @Override
-    int getFinalValue(int i) {
+    int getInitialValue(int i) {
         return (SIZE * (SIZE - 1)) + i;
+    }
+
+    @Override
+    int getFinalValue(int i) {return i;
+
     }
 
     public MoveDown(List<Cell> gameField) {

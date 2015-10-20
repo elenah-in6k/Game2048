@@ -16,12 +16,8 @@ public class MoveRight extends Move {
         while (initialValue < j) {
             int i = finalValue;
             while ((initialValue < i)) {
-                Cell cellLeftOld = gameField.get(i - 1);
-                Cell cellRightOld = gameField.get(i);
-                if ((cellRightOld.isEmpty()) && (!cellLeftOld.isEmpty())) {
-                    gameField.set(i, new Cell(cellLeftOld.cellValue));
-                    gameField.set(i - 1, Cell.createEmptyCell());
-                }
+                Pair pair = getCellPair(i);
+                pair.pull();
                 i--;
             }
             j--;
@@ -32,19 +28,13 @@ public class MoveRight extends Move {
     void getSumEqualCellsAfterOffset(int initialValue, int finalValue) {
        int i = finalValue;
         while ((initialValue < i)) {
-            Cell cellLeftOld = gameField.get(i - 1);
-            Cell cellRightOld = gameField.get(i);
-            Cell cellLeftNew = cellLeftOld;
-            Cell cellRightNew = cellRightOld;
-            if ((!cellRightOld.isEmpty()) && (cellRightOld.isEquals(cellLeftOld))) {
-                cellRightNew = new Cell(cellRightOld.cellValue * 2);
-                gameScore += cellRightOld.cellValue * 2;
-                cellLeftNew = Cell.createEmptyCell();
-            }
-            gameField.set(i - 1, cellLeftNew);
-            gameField.set(i, cellRightNew);
+            Pair pair = getCellPair(i);
+            gameScore += pair.merge();
             i--;
         }
+    }
+    private Pair getCellPair(int posInLine) {
+        return new Pair(gameField.get(posInLine), gameField.get(posInLine - 1 ));
     }
 
     @Override
