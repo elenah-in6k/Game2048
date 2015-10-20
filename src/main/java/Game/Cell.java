@@ -5,12 +5,9 @@ package Game;
  */
 public class Cell {
     public int cellValue;
-    int numberCell;
 
     public Cell(int cellValue) {
-//        this.numberCell = numberCell;
         this.cellValue = cellValue;
-
     }
 
     public int getCellValue() {
@@ -41,5 +38,9 @@ public class Cell {
             return true;
         }
         return false;
+    }
+
+    public void setValue(int value) {
+        cellValue = value;
     }
 }

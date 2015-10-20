@@ -1,5 +1,6 @@
 import Filler.CellFiller;
 import Filler.RandomCellFiller;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ public class RandomCellFillerTest {
     CellFiller valueOfCell = new RandomCellFiller();
 
     @Test
+    @Ignore
     public void testRandomValueOfCell() {
         List<Integer> values = new ArrayList<>();
         for (int i = 0; i <= 20; i++) {

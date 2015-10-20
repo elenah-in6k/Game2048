@@ -1,5 +1,6 @@
 import Game.Direction;
 import Game.GameInputController;
+import Game.GameInputControllerImpl;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
@@ -12,16 +13,17 @@ import static org.hamcrest.core.Is.is;
 /**
  * Created by employee on 10/19/15.
  */
-public class GameInputControllerTest {
+public class GameInputControllerImplTest {
 
     @Test
     public void testGameController() throws FileNotFoundException {
-        InputStream inputDirection = new ByteArrayInputStream("8624".getBytes());
-        GameInputController inputController = new GameInputController(inputDirection);
+        InputStream inputDirection = new ByteArrayInputStream("86245".getBytes());
+        GameInputController inputController = new GameInputControllerImpl(inputDirection);
 
         assertThat(inputController.getDirection(), is(Direction.UP));
         assertThat(inputController.getDirection(), is(Direction.RIGHT));
         assertThat(inputController.getDirection(), is(Direction.DOWN));
         assertThat(inputController.getDirection(), is(Direction.LEFT));
+        assertThat(inputController.getDirection(), is(Direction.DOWN));
     }
 }

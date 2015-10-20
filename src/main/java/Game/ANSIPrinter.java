@@ -1,51 +1,47 @@
-import Game.ColorShema;
-import Game.GameField;
-import Game.GameField.*;
+package Game;
+
+import java.io.PrintStream;
 
 /**
  * Created by Алена on 19.10.2015.
  */
-public class Printer {
+public class ANSIPrinter implements Printer {
+    PrintStream printStream;
     GameField gameField;
-    ColorShema color;
-    String output = "";
-    public Printer(GameField gameField) {
-    this.gameField = gameField;
 
-
+    public ANSIPrinter(PrintStream printStream, GameField gameFieldImpl) {
+            this.gameField = gameFieldImpl;
+            this.printStream = printStream;
     }
-    void printGameField(){
+
+    public void printGameField(){
+        String printString = "";
+        printString +="\n\n\n\n\n\n\n\n\n\n\n\n\n\n";
+        printString +="Score: "+ gameField.getScore()+"\n";
         int i=0;
-        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-        System.out.println("Score: "+gameField.getScore());
         int j = 0;
-        while (i < gameField.SIZE  ) {
-                System.out.println(" ------  ------  ------  ------ ");
-            output += " ------  ------  ------  ------ \n";
+        while (i < GameField.SIZE  ) {
+            printString += " ------- ------- ------- -------\n";
             int k = 0;
-            while ((k < gameField.SIZE ) ){
-            System.out.print("|");
-                output += "|";
-               System.out.print(getCellColor(gameField.gameField.get(j).cellValue));
-                output += gameField.gameField.get(j).cellValue;
-                System.out.printf("%6s", gameField.gameField.get(j).cellValue);
-                System.out.print(getCellColor(0)+"|");
-                output += "|";
+            while ((k < GameField.SIZE ) ){
+                printString += "|";
+                printString += getCellColor(gameField.getCellValue(j));
+                printString += "\t";
+                printString += gameField.getCellValue(j);
+                printString +="\t"+getCellColor(0)+"|";
                 j++; k++;
             }
-            System.out.println();
-            System.out.println(" ------  ------  ------  ------ ");
-            output +="\n ------  ------  ------  ------ \n";
-
+            printString +="\n ------- ------- ------- -------\n";
             i ++;
         }
+        printStream.print(printString);
 
     }
     String getCellColor(int cellValue){
         ColorShema colorShema = new ColorShema();
 
         String color = colorShema.RESET;
-
+//case or enum
         if (cellValue == 0)
             color = colorShema.RESET;
         if (cellValue == 2)
@@ -72,8 +68,5 @@ public class Printer {
             color = colorShema.BACKGROUND_RED;
 
         return color;
-    }
-    String getOutput(){
-            return output;
     }
 }
