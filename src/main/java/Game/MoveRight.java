@@ -12,10 +12,10 @@ public class MoveRight extends Move {
 
     @Override
     void offset(int initialValue, int finalValue) {
-        int j = finalValue;
-        while (initialValue < j) {
-            int i = finalValue;
-            while ((initialValue < i)) {
+        int j = initialValue;
+        while (finalValue < j) {
+            int i = initialValue;
+            while ((finalValue < i)) {
                 Pair pair = getCellPair(i);
                 pair.pull();
                 i--;
@@ -26,8 +26,8 @@ public class MoveRight extends Move {
 
     @Override
     void getSumEqualCellsAfterOffset(int initialValue, int finalValue) {
-       int i = finalValue;
-        while ((initialValue < i)) {
+       int i = initialValue;
+        while (( finalValue< i)) {
             Pair pair = getCellPair(i);
             gameScore += pair.merge();
             i--;
@@ -40,12 +40,12 @@ public class MoveRight extends Move {
     @Override
     int getInitialValue(int i) {
 
-        return i * SIZE;
+        return((i + 1) * SIZE) - 1;
     }
 
     @Override
     int getFinalValue(int i) {
 
-        return ((i + 1) * SIZE) - 1;
+        return  i * SIZE;
     }
 }
