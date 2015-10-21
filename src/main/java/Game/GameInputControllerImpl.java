@@ -33,6 +33,6 @@ public class GameInputControllerImpl implements GameInputController {
                 return Direction.DOWN;
             default:
                 throw new UnsupportedOperationException();
-        } 
+        }
     }
 }
