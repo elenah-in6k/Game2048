@@ -30,7 +30,7 @@ public class ANSIPrinter implements Printer {
                 printString += gameField.getCellValue(j);
                 printString +="\t"+getCellColor(0)+"|";
                 j++; k++;
-                
+
             }
             printString +="\n ------- ------- ------- -------\n";
             i ++;

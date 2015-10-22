@@ -13,14 +13,15 @@ public class MoveUp extends Move {
     @Override
     void offset(int initialValue, int finalValue) {
         int j = initialValue;
-        while (finalValue >= j) {
+       // while (finalValue >= j)
+        for(;j!=finalValue;j += SIZE){
             int i = initialValue;
             while ((finalValue >= i)) {
                 Pair pair = getCellPair(i);
                 pair.pull();
                 i += SIZE;
             }
-            j += SIZE;
+
         }
     }
 

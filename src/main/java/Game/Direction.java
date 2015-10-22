@@ -7,5 +7,11 @@ public enum Direction {
     RIGHT,
     LEFT,
     UP,
-    DOWN,
+    DOWN;
+    abstract class GameIterator{
+       abstract int getInitialValue(int index);
+        abstract int getFinalValue(int index);
+        abstract int getGameIterator(int index);
+    }
+
 }
