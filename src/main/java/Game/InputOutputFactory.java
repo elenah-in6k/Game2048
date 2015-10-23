@@ -8,7 +8,7 @@ import java.io.PrintStream;
  */
 public class InputOutputFactory {
 
-    public static InputStream InStream(){
+    public static InputStream inStream(){
 
         return System.in;
     }
