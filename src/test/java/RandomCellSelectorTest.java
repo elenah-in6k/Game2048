@@ -1,6 +1,6 @@
 import Filler.CellSelector;
 import Filler.RandomCellSelector;
-import Game.core.Cell;
+import core.Cell;
 import org.junit.Test;
 
 import java.util.*;

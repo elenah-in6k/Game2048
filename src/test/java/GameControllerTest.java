@@ -1,5 +1,5 @@
-import Game.core.Direction;
-import Game.core.GameField;
+import core.Direction;
+import core.GameField;
 import Game.console.GameInputController;
 import Game.console.Printer;
 

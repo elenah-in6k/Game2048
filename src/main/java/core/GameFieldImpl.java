@@ -1,10 +1,10 @@
-package Game.core;
+package core;
 
 import Filler.CellFiller;
 import Filler.CellSelector;
 import Filler.RandomCellSelector;
 import Filler.StaticCellFiller;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 /**
  * Created by employee on 10/16/15.
  */
-
+@Service("gameField")
 public class GameFieldImpl implements GameField{
     int gameScore = 0;
     private CellFiller cellValue = new StaticCellFiller(2);
@@ -31,7 +31,9 @@ public class GameFieldImpl implements GameField{
         fillEmptyCell();
         fillEmptyCell();
     }
-
+    public boolean isGameEnd() {
+        return !hasAvailableMoves() || hasCellWith2048();
+    }
     public void fillEmptyCell() {
         Cell cell = cellSelector.selectCell(getEmptyCells());
         cell.cellValue = cellValue.getCellValue();

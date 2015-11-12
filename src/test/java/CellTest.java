@@ -1,4 +1,4 @@
-import Game.core.Cell;
+import core.Cell;
 import org.junit.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;

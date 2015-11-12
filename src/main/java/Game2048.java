@@ -1,4 +1,4 @@
-import Game.core.GameController;
+import Game.GameController;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 

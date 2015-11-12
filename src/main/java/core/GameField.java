@@ -1,6 +1,4 @@
-package Game.core;
-
-import Game.core.Direction;
+package core;
 
 /**
  * Created by employee on 10/20/15.
@@ -15,6 +13,6 @@ public interface GameField {
     boolean hasCellWith2048();
     void move(Direction direction);
     int getScore();
-
+    public boolean isGameEnd();
     int getCellValue(int index);
 }

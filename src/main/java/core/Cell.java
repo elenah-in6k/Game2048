@@ -1,4 +1,4 @@
-package Game.core;
+package core;
 
 /**
  * Created by employee on 10/16/15.

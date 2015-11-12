@@ -1,6 +1,6 @@
 package Game.console;
 
-import Game.core.Direction;
+import core.Direction;
 
 import java.io.IOException;
 import java.io.InputStream;

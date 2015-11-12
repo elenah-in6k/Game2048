@@ -44,6 +44,7 @@ public class WebGameController {
         while (!gameField.isGameEnd()) {
 
             Direction direction = Direction.LEFT;
+            
             gameField.move(direction);
             gameField.fillEmptyCell();
         }

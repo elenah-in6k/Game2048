@@ -6,7 +6,7 @@
        http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 
-    <bean id="gameField" class="Game.core.GameFieldImpl" />
+    <bean id="gameField" class="core.GameFieldImpl" />
     <bean id="inStream" class="Game.console.InputOutputFactory"
           factory-method="inStream" />
     <bean id="outStream" class="Game.console.InputOutputFactory"
@@ -19,7 +19,7 @@
     <bean id="input" class="Game.console.GameInputControllerImpl" >
         <constructor-arg ref="inStream" />
     </bean>
-    <bean id="controller" class="Game.core.GameController">
+    <bean id="controller" class="Game.GameController">
         <constructor-arg ref="gameField" />
         <constructor-arg ref="printer" />
         <constructor-arg ref="input" />

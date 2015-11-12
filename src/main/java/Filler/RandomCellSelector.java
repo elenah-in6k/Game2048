@@ -1,6 +1,6 @@
 package Filler;
 
-import Game.core.Cell;
+import core.Cell;
 
 import java.util.List;
 import java.util.Random;

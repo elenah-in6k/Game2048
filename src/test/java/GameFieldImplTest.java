@@ -1,6 +1,6 @@
-import Game.core.Direction;
-import Game.core.GameField;
-import Game.core.GameFieldImpl;
+import core.Direction;
+import core.GameField;
+import core.GameFieldImpl;
 import org.junit.Ignore;
 import org.junit.Test;
 

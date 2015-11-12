@@ -1,7 +1,9 @@
-package Game.core;
+package Game;
 
 import Game.console.GameInputController;
 import Game.console.Printer;
+import core.Direction;
+import core.GameField;
 
 /**
  * Created by employee on 10/20/15.
@@ -18,12 +20,15 @@ public class GameController {
         inputController = input;
     }
     public void startGame() {
-        while (gameField.hasAvailableMoves() && !gameField.hasCellWith2048()) {
+        while (!gameField.isGameEnd()) {
             printer.printGameField();
-            gameField.move(inputController.getDirection());
+            Direction direction = inputController.getDirection();
+            gameField.move(direction);
             gameField.fillEmptyCell();
         }
 
     }
+
+
 
 }

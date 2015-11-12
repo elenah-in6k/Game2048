@@ -1,4 +1,4 @@
-package Game.core;
+package core;
 
 import java.util.List;
 

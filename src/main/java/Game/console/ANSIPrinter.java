@@ -1,6 +1,6 @@
 package Game.console;
 
-import Game.core.GameField;
+import core.GameField;
 
 import java.io.PrintStream;
 

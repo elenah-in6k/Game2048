@@ -1,6 +1,6 @@
 import Game.console.ANSIPrinter;
-import Game.core.GameField;
-import Game.core.GameFieldImpl;
+import core.GameField;
+import core.GameFieldImpl;
 import Game.console.Printer;
 import org.junit.Test;
 

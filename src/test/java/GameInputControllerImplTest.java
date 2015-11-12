@@ -1,4 +1,4 @@
-import Game.core.Direction;
+import core.Direction;
 import Game.console.GameInputController;
 import Game.console.GameInputControllerImpl;
 import org.junit.Test;
