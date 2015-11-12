@@ -1,7 +1,7 @@
-import Game.ANSIPrinter;
-import Game.GameField;
-import Game.GameFieldImpl;
-import Game.Printer;
+import Game.console.ANSIPrinter;
+import Game.core.GameField;
+import Game.core.GameFieldImpl;
+import Game.console.Printer;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;

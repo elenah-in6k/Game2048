@@ -1,8 +1,7 @@
-import Game.Direction;
-import Game.GameField;
-import Game.GameInputController;
-import Game.Printer;
-import org.junit.Test;
+import Game.core.Direction;
+import Game.core.GameField;
+import Game.console.GameInputController;
+import Game.console.Printer;
 
 /**
  * Created by employee on 10/20/15.

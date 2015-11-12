@@ -1,4 +1,6 @@
-package Game;
+package Game.console;
+
+import Game.core.Direction;
 
 import java.io.IOException;
 import java.io.InputStream;

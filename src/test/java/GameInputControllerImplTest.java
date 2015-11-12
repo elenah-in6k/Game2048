@@ -1,6 +1,6 @@
-import Game.Direction;
-import Game.GameInputController;
-import Game.GameInputControllerImpl;
+import Game.core.Direction;
+import Game.console.GameInputController;
+import Game.console.GameInputControllerImpl;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;

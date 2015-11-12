@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bens xmlns="http://www.springframework.org/schema/beans"
+<beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 
-    <bean id="gameField" class="Game.GameFieldImpl" />
-    <bean id="inStream" class="Game.InputOutputFactory"
+    <bean id="gameField" class="Game.core.GameFieldImpl" />
+    <bean id="inStream" class="Game.console.InputOutputFactory"
           factory-method="inStream" />
-    <bean id="outStream" class="Game.InputOutputFactory"
+    <bean id="outStream" class="Game.console.InputOutputFactory"
           factory-method="outStream" />
 
-    <bean id="printer" class="Game.ANSIPrinter" >
+    <bean id="printer" class="Game.console.ANSIPrinter" >
         <constructor-arg ref="outStream"  />
         <constructor-arg ref="gameField" />
     </bean>
-    <bean id="input" class="Game.GameInputControllerImpl" >
+    <bean id="input" class="Game.console.GameInputControllerImpl" >
         <constructor-arg ref="inStream" />
     </bean>
-    <bean id="controller" class="Game.GameController">
+    <bean id="controller" class="Game.core.GameController">
         <constructor-arg ref="gameField" />
         <constructor-arg ref="printer" />
         <constructor-arg ref="input" />
     </bean>
 
 
-    </bens>
+</beans>

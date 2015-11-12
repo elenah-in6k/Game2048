@@ -1,4 +1,4 @@
-package Game;
+package Game.console;
 
 import java.io.InputStream;
 import java.io.PrintStream;

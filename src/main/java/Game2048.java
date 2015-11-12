@@ -1,5 +1,4 @@
-import Game.GameController;
-import Game.*;
+import Game.core.GameController;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -12,6 +11,7 @@ public class Game2048 {
 
         ApplicationContext factory = new ClassPathXmlApplicationContext("App.xml");
         GameController controller = (GameController)factory.getBean("controller");
+
         controller.startGame();
     }
 

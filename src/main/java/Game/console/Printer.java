@@ -1,8 +1,4 @@
-package Game;
-
-import Game.GameField;
-
-import java.io.PrintStream;
+package Game.console;
 
 /**
  * Created by employee on 10/20/15.

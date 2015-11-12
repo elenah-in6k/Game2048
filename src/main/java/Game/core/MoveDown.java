@@ -1,51 +1,50 @@
-package Game;
+package Game.core;
 
 import java.util.List;
 
 /**
  * Created by Алена on 20.10.2015.
  */
-public class MoveRight extends Move {
-    MoveRight(List<Cell> gameField) {
-        super(gameField);
-    }
-
+public class MoveDown extends Move {
     @Override
     void offset(int initialValue, int finalValue) {
         int j = initialValue;
-        while (finalValue < j) {
+        while ( finalValue < j) {
             int i = initialValue;
-            while ((finalValue < i)) {
+            while ((finalValue  < i)) {
                 Pair pair = getCellPair(i);
                 pair.pull();
-                i--;
+                i -= SIZE;
             }
-            j--;
+            j -= SIZE;
         }
     }
 
     @Override
     void getSumEqualCellsAfterOffset(int initialValue, int finalValue) {
-       int i = initialValue;
-        while (( finalValue< i)) {
+        int i = initialValue;
+        while ((finalValue < i)) {
             Pair pair = getCellPair(i);
             gameScore += pair.merge();
-            i--;
+            i -= SIZE;
         }
     }
+
     private Pair getCellPair(int posInLine) {
-        return new Pair(gameField.get(posInLine), gameField.get(posInLine - 1 ));
+        return new Pair(gameField.get(posInLine), gameField.get(posInLine - SIZE));
     }
 
     @Override
     int getInitialValue(int i) {
-
-        return((i + 1) * SIZE) - 1;
+        return (SIZE * (SIZE - 1)) + i;
     }
 
     @Override
-    int getFinalValue(int i) {
+    int getFinalValue(int i) {return i;
 
-        return  i * SIZE;
+    }
+
+    public MoveDown(List<Cell> gameField) {
+        super(gameField);
     }
 }

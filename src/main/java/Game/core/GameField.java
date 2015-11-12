@@ -1,7 +1,6 @@
-package Game;
+package Game.core;
 
-import java.util.ArrayList;
-import java.util.List;
+import Game.core.Direction;
 
 /**
  * Created by employee on 10/20/15.

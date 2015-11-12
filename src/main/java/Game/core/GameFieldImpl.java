@@ -1,4 +1,4 @@
-package Game;
+package Game.core;
 
 import Filler.CellFiller;
 import Filler.CellSelector;
@@ -6,13 +6,13 @@ import Filler.RandomCellSelector;
 import Filler.StaticCellFiller;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 /**
  * Created by employee on 10/16/15.
  */
+//@Repository()
 public class GameFieldImpl implements GameField{
     int gameScore = 0;
     private CellFiller cellValue = new StaticCellFiller(2);

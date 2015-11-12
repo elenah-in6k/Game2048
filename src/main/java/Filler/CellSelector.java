@@ -1,6 +1,6 @@
 package Filler;
 
-import Game.Cell;
+import Game.core.Cell;
 
 import java.util.List;
 
