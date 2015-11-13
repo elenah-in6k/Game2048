@@ -1,6 +1,7 @@
 package controllers;
 
 import core.Direction;
+import core.GameField;
 import core.GameFieldImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -38,7 +39,7 @@ public class WebGameController  {
     public GameFieldImpl createUser() {
 
         GameFieldImpl gameField = new GameFieldImpl();
-
+        this.gameField = gameField;
         return gameField;
     }
     @RequestMapping(value = "action/{option}", method = RequestMethod.GET)
@@ -69,9 +70,8 @@ public class WebGameController  {
         return "redirect:/";
     }
 
-    @RequestMapping(value = "/", method = RequestMethod.POST)
-    public String move(@ModelAttribute("gameField") GameFieldImpl gameField,
-                              @PathVariable int option,
+    @RequestMapping(value = "/game/{option}", method = RequestMethod.POST)
+    public @ResponseBody String move(@PathVariable int option,
                               ModelMap model
     ){
 
@@ -82,10 +82,10 @@ public class WebGameController  {
             case 40:
                 gameField.move(Direction.DOWN);
                 break;
-            case 4:
+            case 37:
                 gameField.move(Direction.LEFT);
                 break;
-            case 6:
+            case 39:
                 gameField.move(Direction.RIGHT);
                 break;
         }
@@ -94,7 +94,23 @@ public class WebGameController  {
             gameField.fillEmptyCell();
         }
 
-        return "redirect:/";
+        String str = "<table border=\"1px\">";
+
+        int i = 0;
+        int j = 0;
+        while (i < GameField.SIZE  ) {
+            str +="<tr>";
+             int k = 0;
+            while ((k < GameField.SIZE ) ){
+                str += "<td>"+ gameField.getCellValue(j) +"</td>";
+                j++; k++;
+            }
+            str +="</tr>";
+              i ++;
+        }
+        str +="</table>";
+
+        return str;
     }
 
     public void playGame() {
