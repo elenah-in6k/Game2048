@@ -4,6 +4,7 @@ import Filler.CellFiller;
 import Filler.CellSelector;
 import Filler.RandomCellSelector;
 import Filler.StaticCellFiller;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ import java.util.stream.Collectors;
 /**
  * Created by employee on 10/16/15.
  */
-@Service("gameField")
+
 public class GameFieldImpl implements GameField{
     int gameScore = 0;
     private CellFiller cellValue = new StaticCellFiller(2);
@@ -25,6 +26,7 @@ public class GameFieldImpl implements GameField{
         for (int i = 0; i < SIZE * SIZE; i++) {
             gameField.add(Cell.createEmptyCell());
         }
+        startNewGame();
     }
 
     public void startNewGame() {

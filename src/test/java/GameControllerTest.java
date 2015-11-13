@@ -38,6 +38,11 @@ public class GameControllerTest implements GameInputController, GameField, Print
     }
 
     @Override
+    public boolean isGameEnd() {
+        return false;
+    }
+
+    @Override
     public int getCellValue(int index) {
         return 0;
     }
