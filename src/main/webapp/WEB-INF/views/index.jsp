@@ -6,7 +6,7 @@
   <head>
     <title></title>
       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-      <link rel="stylesheet" href="/resources/css/style.css" type="text/css" />
+
       <script>
           jQuery(document).bind('keydown', function (evt){
 //              var direction;
@@ -26,12 +26,12 @@
 //                  default: direction = "no_direction";
 //              }
               $.ajax({
-                  url: "/game?option=" + evt.which,
+                  url: "/game/" + evt.which,
                   type : "POST",
                   async: true,
-                  success : function() {
+                  success : function(response) {
 
-                          document.getElementsByClassName("test").innerHTML = responseText;
+                          document.getElementById("test").innerHTML = response;
 
 
                   }

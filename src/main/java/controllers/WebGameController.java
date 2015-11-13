@@ -22,10 +22,6 @@ public class WebGameController  {
 
     GameFieldImpl gameField;
 
-//    @RequestMapping(method = RequestMethod.GET)
-//    public String printWelcome() {
-//        return "index";
-//    }
 
     @RequestMapping(method = RequestMethod.GET)
 
