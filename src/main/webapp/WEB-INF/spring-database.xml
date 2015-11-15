@@ -35,11 +35,11 @@
 		</property>
 	</bean>
 
-	<bean id="userDao" class="com.mkyong.users.dao.UserDaoImpl">
+	<bean id="userDao" class="users.dao.UserDaoImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
-	<bean id="myUserDetailsService" class="com.mkyong.users.service.MyUserDetailsService">
+	<bean id="myUserDetailsService" class="users.service.MyUserDetailsService">
 		<property name="userDao" ref="userDao" />
 	</bean>
 
@@ -58,7 +58,7 @@
 
 	<aop:config>
 		<aop:pointcut id="userServicePointCut"
-			expression="execution(* com.mkyong.users.service.*Service.*(..))" />
+			expression="execution(* users.service.*Service.*(..))" />
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="userServicePointCut" />
 	</aop:config>
 
