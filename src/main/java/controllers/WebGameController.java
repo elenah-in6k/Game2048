@@ -32,7 +32,7 @@ public class WebGameController  {
     }
 
     @ModelAttribute("gameField")
-    public GameFieldImpl createUser() {
+    public GameFieldImpl createField() {
 
         GameFieldImpl gameField = new GameFieldImpl();
         this.gameField = gameField;
