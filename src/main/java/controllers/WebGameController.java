@@ -26,26 +26,27 @@ import javax.servlet.http.HttpServletRequest;
 @Controller
 @SessionAttributes(value = "gameField")
 @RequestMapping("/")
-public class WebGameController  {
+public class WebGameController {
 
     GameFieldImpl gameField;
 
 
     @RequestMapping(method = RequestMethod.GET)
-    public String init(@ModelAttribute("gameField") GameFieldImpl gameField, ModelMap model ){
-        model.addAttribute("gameField", gameField);
+    public ModelAndView init(@ModelAttribute("gameField") GameFieldImpl gameField, ModelAndView model) {
+        model.addObject("title", "GAME 2048");
+        createField();
+        model.addObject("gameFieldd", getField(gameField));
+        model.setViewName("index");
 
-        return "index";
-    }
-    @RequestMapping(value = "/welcome**", method = RequestMethod.GET)
-    public ModelAndView defaultPage() {
-
-        ModelAndView model = new ModelAndView();
-        model.addObject("title", "Spring Security + Hibernate Example");
-        model.addObject("message", "This is default page!");
-        model.setViewName("hello");
         return model;
 
+    }
+
+    @RequestMapping(value = "/newGame", method = RequestMethod.GET)
+    public String newGame() {
+        createField();
+
+        return "redirect:/";
     }
 
     @ModelAttribute("gameField")
@@ -55,13 +56,14 @@ public class WebGameController  {
         this.gameField = gameField;
         return gameField;
     }
+
     @RequestMapping(value = "action/{option}", method = RequestMethod.GET)
     public String controlGame(@ModelAttribute("gameField") GameFieldImpl gameField,
                               @PathVariable int option,
                               ModelMap model
-    ){
+    ) {
 
-        switch (option){
+        switch (option) {
             case 8:
                 gameField.move(Direction.UP);
                 break;
@@ -83,12 +85,39 @@ public class WebGameController  {
         return "redirect:/";
     }
 
-    @RequestMapping(value = "/game/{option}", method = RequestMethod.POST)
-    public @ResponseBody String move(@PathVariable int option,
-                              ModelMap model
-    ){
+//    @RequestMapping(value = "/{option}", method = RequestMethod.POST)
+//    public ModelAndView move(@PathVariable int option, ModelAndView model) {
+//
+//        switch (option) {
+//            case 38:
+//                gameField.move(Direction.UP);
+//                break;
+//            case 40:
+//                gameField.move(Direction.DOWN);
+//                break;
+//            case 37:
+//                gameField.move(Direction.LEFT);
+//                break;
+//            case 39:
+//                gameField.move(Direction.RIGHT);
+//                break;
+//            case 0:
+//                break;
+//        }
+//
+//        if (!gameField.isGameEnd()) {
+//            gameField.fillEmptyCell();
+//        }
+//
+//        model.addObject("gameFieldd", getField(gameField));
+//        return model;
+//    }
 
-        switch (option){
+    @RequestMapping(value = "/{option}", method = RequestMethod.POST)
+    public  @ResponseBody  String move(@PathVariable int option,
+                ModelAndView model) {
+
+        switch (option) {
             case 38:
                 gameField.move(Direction.UP);
                 break;
@@ -101,27 +130,37 @@ public class WebGameController  {
             case 39:
                 gameField.move(Direction.RIGHT);
                 break;
+            case 0:
+                break;
         }
 
         if (!gameField.isGameEnd()) {
             gameField.fillEmptyCell();
         }
 
-        String str = "<table border=\"1px\">";
+        model.addObject("gameFieldd", "");
+        return getField(gameField);
+    }
+
+    public String getField(GameFieldImpl gameField) {
+        String str = "";
+        str += "<h3>Score: " + gameField.getScore() + "</h3>";
+        str += "<table border=\"1px\">";
 
         int i = 0;
         int j = 0;
-        while (i < GameField.SIZE  ) {
-            str +="<tr>";
-             int k = 0;
-            while ((k < GameField.SIZE ) ){
-                str += "<td>"+ gameField.getCellValue(j) +"</td>";
-                j++; k++;
+        while (i < GameField.SIZE) {
+            str += "<tr>";
+            int k = 0;
+            while ((k < GameField.SIZE)) {
+                str += "<td>" + gameField.getCellValue(j) + "</td>";
+                j++;
+                k++;
             }
-            str +="</tr>";
-              i ++;
+            str += "</tr>";
+            i++;
         }
-        str +="</table>";
+        str += "</table>";
 
         return str;
     }
@@ -136,6 +175,7 @@ public class WebGameController  {
         }
 
     }
+
 
     @RequestMapping(value = "/admin**", method = RequestMethod.GET)
     public ModelAndView adminPage() {
@@ -166,6 +206,7 @@ public class WebGameController  {
         return model;
 
     }
+
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public ModelAndView registration(@RequestParam(value = "error", required = false) String error,
                                      @RequestParam(value = "logout", required = false) String logout, HttpServletRequest request) {
@@ -183,6 +224,7 @@ public class WebGameController  {
         return model;
 
     }
+
     //	public ModelAndView registerUserAccount(
 //			@ModelAttribute("user") User account,
 //			BindingResult result, HttpServletRequest request, Errors errors) {
