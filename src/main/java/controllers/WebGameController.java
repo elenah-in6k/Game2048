@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import users.service.MyUserDetailsService;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -30,11 +31,11 @@ public class WebGameController {
 
     GameFieldImpl gameField;
 
+    MyUserDetailsService userService;
 
     @RequestMapping(method = RequestMethod.GET)
     public ModelAndView init(@ModelAttribute("gameField") GameFieldImpl gameField, ModelAndView model) {
         model.addObject("title", "GAME 2048");
-        createField();
         model.addObject("gameFieldd", getField(gameField));
         model.setViewName("index");
 
@@ -85,40 +86,13 @@ public class WebGameController {
         return "redirect:/";
     }
 
-//    @RequestMapping(value = "/{option}", method = RequestMethod.POST)
-//    public ModelAndView move(@PathVariable int option, ModelAndView model) {
-//
-//        switch (option) {
-//            case 38:
-//                gameField.move(Direction.UP);
-//                break;
-//            case 40:
-//                gameField.move(Direction.DOWN);
-//                break;
-//            case 37:
-//                gameField.move(Direction.LEFT);
-//                break;
-//            case 39:
-//                gameField.move(Direction.RIGHT);
-//                break;
-//            case 0:
-//                break;
-//        }
-//
-//        if (!gameField.isGameEnd()) {
-//            gameField.fillEmptyCell();
-//        }
-//
-//        model.addObject("gameFieldd", getField(gameField));
-//        return model;
-//    }
-
     @RequestMapping(value = "/{option}", method = RequestMethod.POST)
     public  @ResponseBody  String move(@PathVariable int option,
                 ModelAndView model) {
 
         switch (option) {
             case 38:
+
                 gameField.move(Direction.UP);
                 break;
             case 40:
@@ -143,8 +117,16 @@ public class WebGameController {
     }
 
     public String getField(GameFieldImpl gameField) {
+    userService = new MyUserDetailsService();
+        int maxScore = 0;
+//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//        if (!(auth instanceof AnonymousAuthenticationToken)) {
+//        UserDetails userDetail = (UserDetails) auth.getPrincipal();
+//        maxScore = userService.getMaxScore(userDetail.getUsername());
+//        }
+
         String str = "";
-        str += "<h3>Score: " + gameField.getScore() + "</h3>";
+        str += "<h3>Score: " + gameField.getScore() + " Max score: " + maxScore + "</h3>";
         str += "<table border=\"1px\">";
 
         int i = 0;
@@ -181,7 +163,7 @@ public class WebGameController {
     public ModelAndView adminPage() {
 
         ModelAndView model = new ModelAndView();
-        model.addObject("title", "Spring Security + Hibernate Example");
+        model.addObject("title", "Game 2048");
         model.addObject("message", "This page is for ROLE_ADMIN only!");
         model.setViewName("admin");
 

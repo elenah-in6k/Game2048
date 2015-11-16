@@ -13,6 +13,9 @@
         <property name="enabled" type="boolean">
             <column name="enabled" not-null="true" />
         </property>
+        <property name="max_score" type="int">
+            <column name="max_score" not-null="false" />
+        </property>
         <set name="userRole" table="user_roles" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="username" length="45" not-null="true" />

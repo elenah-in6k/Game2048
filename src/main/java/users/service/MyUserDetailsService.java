@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+import org.springframework.stereotype.Service;
 import users.dao.UserDao;
 import users.model.UserRole;
 
@@ -52,6 +53,13 @@ public class MyUserDetailsService implements UserDetailsService {
 		List<GrantedAuthority> Result = new ArrayList<GrantedAuthority>(setAuths);
 
 		return Result;
+	}
+	public void setMaxScore(int value, String username) {
+		userDao.setMaxScore(value, username);
+	}
+
+	public int getMaxScore (String username){
+		return userDao.getMaxScore(username);
 	}
 
 	public UserDao getUserDao() {
