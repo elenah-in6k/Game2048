@@ -6,6 +6,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
   <head>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="/resources/css/bootstrap.min.css">
+      <link rel="stylesheet"  href="/resources/css/bootstrap-theme.css" >
     <sec:csrfMetaTags/>
     <title></title>
       <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -34,6 +39,7 @@
 
   </head>
    <body>
+   <div class="container">
    <div>
        <h1>Title : ${title}</h1>
        <h3> <a href="/login">login  </a>
@@ -63,11 +69,17 @@
        </sec:authorize>
        <a href="/newGame"><h2>New game</h2></a>
    </div>
-<div id="test">
+   </div>
+   <div class="container" >
+       <div class="jumbotron">
+            <div id="test">
+
     ${gameFieldd}
 
+          </div>
+        </div>
+    </div>
 
-</div>
    <table>
        <tr><td></td>
            <td><a href="/action/8">up</a></td>

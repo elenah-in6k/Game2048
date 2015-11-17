@@ -127,7 +127,7 @@ public class WebGameController {
 
         String str = "";
         str += "<h3>Score: " + gameField.getScore() + " Max score: " + maxScore + "</h3>";
-        str += "<table border=\"1px\">";
+        str += "<table class=\"table table-striped table-bordered\" >";
 
         int i = 0;
         int j = 0;
@@ -135,7 +135,15 @@ public class WebGameController {
             str += "<tr>";
             int k = 0;
             while ((k < GameField.SIZE)) {
-                str += "<td>" + gameField.getCellValue(j) + "</td>";
+                str += "<td class =\"" ;
+                str += getColor(gameField.getCellValue(j));
+                str +=  "\">" ;
+                if (gameField.getCellValue(j) != 0){
+                str += gameField.getCellValue(j);
+                }else{
+                    str +=" " ;
+                }
+                str += "</td>";
                 j++;
                 k++;
             }
@@ -145,6 +153,20 @@ public class WebGameController {
         str += "</table>";
 
         return str;
+    }
+
+    private String getColor(int cellValue) {
+        String color = "";
+        if ((cellValue == 0)||(cellValue ==  16)||(cellValue ==  256))
+            color = "info";
+        if ((cellValue == 2)||(cellValue ==  32)||(cellValue ==  512))
+            color = "success";
+        if ((cellValue ==  4)||(cellValue ==  64)||(cellValue ==  1024))
+            color = "warning";
+        if ((cellValue ==  8)||(cellValue ==  128)||(cellValue ==  2048))
+            color = "error";
+        return color;
+
     }
 
 
