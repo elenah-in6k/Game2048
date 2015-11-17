@@ -118,15 +118,22 @@ public class WebGameController {
 
     public String getField(GameFieldImpl gameField) {
     userService = new MyUserDetailsService();
-        int maxScore = 0;
+        String maxScore = "0";
 //        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 //        if (!(auth instanceof AnonymousAuthenticationToken)) {
 //        UserDetails userDetail = (UserDetails) auth.getPrincipal();
 //        maxScore = userService.getMaxScore(userDetail.getUsername());
 //        }
-
-        String str = "";  
-        str += "<h3>Score: " + gameField.getScore() + " Max score: " + maxScore + "</h3>";
+      String name="";
+//        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        if (principal instanceof UserDetails) {
+//            String username = ((UserDetails)principal).getUsername();
+//            name = username.toString();
+//
+//        }
+        //maxScore = userService.getMaxScore("alex");
+        String str = "";
+        str += "<h3>Name: "+name +"Score: " + gameField.getScore() + " Max score: " + maxScore + "</h3>";
         str += "<table class=\"table table-striped table-bordered\" >";
 
         int i = 0;

@@ -1,9 +1,18 @@
 package users.model;
 
+import javax.persistence.*;
+@Entity
+@Table(name="user_roles")
 public class UserRole {
-
+	@Id
+	@Column(name = "user_role_id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer userRoleId;
+	@ManyToOne
+	@JoinColumn(name = "username")
 	private User user;
+
+	@Column(name = "role")
 	private String role;
 
 	public UserRole() {

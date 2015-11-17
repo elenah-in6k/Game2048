@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -14,11 +15,13 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import org.springframework.stereotype.Service;
 import users.dao.UserDao;
+import users.dao.UserDaoImpl;
 import users.model.UserRole;
 
+@Service
 public class MyUserDetailsService implements UserDetailsService {
-
-	private UserDao userDao;
+	@Autowired
+	public UserDaoImpl userDao;
 
 	@Override
 	public UserDetails loadUserByUsername(final String username)
@@ -58,7 +61,8 @@ public class MyUserDetailsService implements UserDetailsService {
 		userDao.setMaxScore(value, username);
 	}
 
-	public int getMaxScore (String username){
+	public String getMaxScore (String username){
+		UserDaoImpl userDao = new UserDaoImpl();
 		return userDao.getMaxScore(username);
 	}
 
@@ -66,7 +70,7 @@ public class MyUserDetailsService implements UserDetailsService {
 		return userDao;
 	}
 
-	public void setUserDao(UserDao userDao) {
+	public void setUserDao(UserDaoImpl userDao) {
 		this.userDao = userDao;
 	}
 

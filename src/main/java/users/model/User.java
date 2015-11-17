@@ -1,15 +1,24 @@
 package users.model;
 
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
-
+@Entity
+@Table(name="users")
 public class User{
-
+	@Id
+	@Column(name = "username")
 	private String username;
+	@Column(name = "password")
 	private String password;
-	private int max_score;
+	@Column(name = "max_score")
+	private String max_score;
+	@Column(name = "enabled")
 	private boolean enabled;
-	private Set<users.model.UserRole> userRole = new HashSet<UserRole>(0);
+
+	@OneToMany
+	@JoinColumn(name = "username")
+	private Set<UserRole> userRole = new HashSet<UserRole>(0);
 
 	public User() {
 	}
@@ -20,7 +29,7 @@ public class User{
 		this.enabled = enabled;
 	}
 
-	public User(String username, String password, boolean enabled, int max_score) {
+	public User(String username, String password, boolean enabled, String max_score) {
 		this.username = username;
 		this.password = password;
 		this.enabled = enabled;
@@ -33,7 +42,7 @@ public class User{
 		this.userRole = userRole;
 	}
 
-	public User(String username, String password, boolean enabled, Set<UserRole> userRole, int max_score) {
+	public User(String username, String password, boolean enabled, Set<UserRole> userRole, String max_score) {
 		this.username = username;
 		this.password = password;
 		this.enabled = enabled;
@@ -69,10 +78,10 @@ public class User{
 		return this.userRole;
 	}
 
-	public void setMax_score(int value){
+	public void setMax_score(String value){
 			this.max_score = value;
 	}
-	public int getMax_score(){
+	public String getMax_score(){
 		return this.max_score;
 	}
 

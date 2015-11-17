@@ -42,8 +42,11 @@
    <div class="container">
    <div>
        <h1>Title : ${title}</h1>
-       <h3> <a href="/login">login  </a>
-           <a href="/registration"> registration</a> </h3>
+       <c:if test="${pageContext.request.userPrincipal.name == null}">
+           <h3> <a href="/login">login  </a>
+               <a href="/registration"> registration</a> </h3>
+       </c:if>
+
        <sec:authorize access="hasRole('ROLE_USER')">
            <!-- For login user -->
            <c:url value="/j_spring_security_logout" var="logoutUrl" />

@@ -6,14 +6,18 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import org.hibernate.internal.SessionFactoryImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import users.model.User;
-@Repository
 @Transactional
+@Repository("userDao")
 public class UserDaoImpl implements UserDao {
 
-	private SessionFactory sessionFactory;
+	@Autowired
+	public SessionFactory sessionFactory;
 
 	@SuppressWarnings("unchecked")
 	public User findByUserName(String username) {
@@ -43,7 +47,8 @@ public class UserDaoImpl implements UserDao {
 
 
 	}
-	public int getMaxScore(String username){
+	public String getMaxScore(String username){
+
 		return findByUserName(username).getMax_score();
 	}
 
