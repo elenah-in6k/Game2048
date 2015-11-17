@@ -147,6 +147,7 @@ public class WebGameController {
         return str;
     }
 
+
     public void playGame() {
         while (!gameField.isGameEnd()) {
 
