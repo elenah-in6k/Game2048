@@ -125,7 +125,7 @@ public class WebGameController {
 //        maxScore = userService.getMaxScore(userDetail.getUsername());
 //        }
 
-        String str = "";
+        String str = "";  
         str += "<h3>Score: " + gameField.getScore() + " Max score: " + maxScore + "</h3>";
         str += "<table class=\"table table-striped table-bordered\" >";
 

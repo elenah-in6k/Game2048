@@ -3250,7 +3250,7 @@ select[multiple].input-lg,textarea.input-lg{
 }
 
 .has-error .checkbox,.has-error .checkbox-inline,.has-error .control-label,.has-error .help-block,.has-error .radio,.has-error .radio-inline,.has-error.checkbox label,.has-error.checkbox-inline label,.has-error.radio label,.has-error.radio-inline label{
-    color:#a94442
+    color #e4b9c0;
 }
 
 .has-error .form-control{
@@ -3272,7 +3272,7 @@ select[multiple].input-lg,textarea.input-lg{
 }
 
 .has-error .form-control-feedback{
-    color:#a94442
+    color:   #e4b9c0;
 }
 
 .has-feedback label~.form-control-feedback{
@@ -5384,7 +5384,7 @@ a.badge:focus,a.badge:hover{
     padding-bottom:30px;
     margin-bottom:30px;
     color:inherit;
-    background-color:#b9def0;
+    background-color: white;
 }
 
 .jumbotron .h1,.jumbotron h1{
